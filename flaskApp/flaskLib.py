@@ -1,5 +1,6 @@
 import flask
 from .routes.index import Index
+from .routes.callback import Callback
 
 class FlaskLib:
     def __init__(self, port=8080):
@@ -9,6 +10,7 @@ class FlaskLib:
 
         # Add default routes
         self.addRoute("/", Index, "index")
+        self.addRoute("/callback", Callback , "callback")
 
     def run(self):
         self.app.run(port=self.port)

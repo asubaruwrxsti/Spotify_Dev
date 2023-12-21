@@ -15,4 +15,4 @@ if __name__ == "__main__":
     flask.run()
 
     # Create a Spotify object
-    # spotify = spotifyLib.Spotify(client, secret , user , "http://localhost:8080", "user-read-private user-read-email")
+    # spotify = spotifyLib.Spotify(client, secret , user , "http://localhost:8080/callback", "user-read-private user-read-email")

@@ -80,5 +80,5 @@ class Spotify:
         headers = {
             "Authorization": f"Bearer {self.token}"
         }
-        response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset, "grant_type": "authorization_code", "code": token})
+        response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset, "grant_type": "authorization_code", "code": self.token})
         return response.json()
