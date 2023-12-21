@@ -1,5 +1,5 @@
 import helperFunctions as hf
-import spotifyLib
+import spotifyLib.spotifyLib as spotifyLib
 import flaskApp.flaskLib as flaskLib
 
 env = hf.loadEnv()
