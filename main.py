@@ -1,38 +1,18 @@
 import helperFunctions as hf
+import spotifyLib
+import flaskApp.flaskLib as flaskLib
+
 env = hf.loadEnv()
 
 if __name__ == "__main__":
-    # Setup
+    # Setup environment variables
     client = env["CLIENT"]
     secret = env["SECRET"]
     user = env["MY_USER_ID"]
 
-    # Fetch token
-    token = hf.fetchToken(client, secret)
-    print(f"Token: {token} \n\n")
+    # Create a Flask object
+    flask = flaskLib.FlaskLib()
+    flask.run()
 
-    # Fetch playlists
-    playlists = hf.fetchPlaylist(token, user, "")
-    for playlist in playlists["items"]:
-        print(f"{playlist['name']} - {playlist['id']}")
-    
-    print("\n\n")
-
-    # Fetch tracks
-    playlist_id = playlists["items"][0]["id"]
-    try:
-        playlist_items = hf.fetchPlaylistTracks(token, playlist_id, 1)
-        for track in playlist_items["items"]:
-            print(f"{track['track']['name']} - {track['track']['id']}")
-    except:
-        print(playlist_items)
-    
-    print("\n\n")
-
-    # Fetch my saved tracks, needs code to work
-    #tracks = hf.fetchMySavedTracks(token)
-    #try:
-    #    for track in tracks["items"]:
-    #        print(f"{track['track']['name']} - {track['track']['id']}")
-    #except:
-    #    print(tracks)
+    # Create a Spotify object
+    # spotify = spotifyLib.Spotify(client, secret , user , "http://localhost:8080", "user-read-private user-read-email")
