@@ -1,6 +1,6 @@
 import helperFunctions as hf
 import spotifyClient.spotifyClient as spotifyClient
-import flaskApp.flaskLib as flaskLib
+import flaskApp.flaskApp as flaskApp
 
 env = hf.loadEnv()
 
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     user = env["MY_USER_ID"]
 
     # Create a Flask object
-    flask = flaskLib.FlaskLib()
+    flask = flaskApp.FlaskLib()
     flask.run()
 
     # Create a Spotify object
