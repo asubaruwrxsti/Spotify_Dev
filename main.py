@@ -5,14 +5,9 @@ import flaskApp.flaskApp as flaskApp
 env = hf.loadEnv()
 
 if __name__ == "__main__":
-    # Setup environment variables
-    client = env["CLIENT"]
-    secret = env["SECRET"]
-    user = env["MY_USER_ID"]
-
     # Create a Flask object
-    flask = flaskApp.FlaskLib()
+    flask = flaskApp.FlaskApp()
     flask.run()
 
     # Create a Spotify object
-    # spotify = spotifyClient.Spotify(client, secret , user , "http://localhost:8080/callback", "user-read-private user-read-email")
+    # spotify = spotifyClient.Spotify(client, secret, user, "http://localhost:8080/callback", "user-read-private user-read-email")

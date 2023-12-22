@@ -7,6 +7,7 @@ class Spotify:
         self.redirect_uri = redirect_uri
         self.scope = scope
         self.token = self.fetchToken()
+        self.code = ""
     
     def fetchToken(self):
         # Example from Spotify API:
@@ -70,9 +71,13 @@ class Spotify:
         response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset})
         return response.json()
 
-    def fetchMySavedTracks(self, limit=10, offset=0):
+    def fetchMySavedTracks(self, limit=10, offset=0, code=None):
         # Example from Spotify API:
         # GET https://api.spotify.com/v1/me/tracks
+        if code:
+            self.code = code
+        else:
+            self.code = input("Enter the code: ")
 
         url = f"https://api.spotify.com/v1/me/tracks"
 
