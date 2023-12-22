@@ -1,5 +1,5 @@
 import helperFunctions as hf
-import spotifyLib.spotifyLib as spotifyLib
+import spotifyClient.spotifyClient as spotifyClient
 import flaskApp.flaskLib as flaskLib
 
 env = hf.loadEnv()
@@ -15,4 +15,4 @@ if __name__ == "__main__":
     flask.run()
 
     # Create a Spotify object
-    # spotify = spotifyLib.Spotify(client, secret , user , "http://localhost:8080/callback", "user-read-private user-read-email")
+    # spotify = spotifyClient.Spotify(client, secret , user , "http://localhost:8080/callback", "user-read-private user-read-email")
