@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        let prm = JSON.parse('{{ params | tojson | safe}}');
+        let url = 'https://accounts.spotify.com/authorize?client_id=' + prm.client_id + '&response_type=code&redirect_uri=' + prm.redirect_uri + '&scope=' + prm.scope;
+
+        window.onload = function() {
+            window.open(url, '_self');
+        };
+    </script>
+</html>

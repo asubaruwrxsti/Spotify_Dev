@@ -1,10 +1,8 @@
-from flask import current_app
 from flask.views import MethodView
-import requests
+from flask import render_template, current_app
 
 class GetSpotifyCode(MethodView):
     def get(self):
-        url = "https://accounts.spotify.com/authorize"
         params = {
             "client_id": current_app.config["SPOTIFY"]["client_id"],
             "response_type": "code",
@@ -12,4 +10,4 @@ class GetSpotifyCode(MethodView):
             "scope": current_app.config["SPOTIFY"]["scope"]
         }
 
-        return (requests.get(url, params=params)).text
+        return render_template('getSpotifyCode.html', params=params)
