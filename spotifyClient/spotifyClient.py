@@ -28,11 +28,11 @@ class Spotify:
         response = requests.post(url, data=data)
         return response.json()["access_token"]
 
-    def fetchPlaylist(self, user, playlist_id):
+    def fetchPlaylist(self, user, playlist_id = None):
         # Example from Spotify API:
         # GET https://api.spotify.com/v1/playlists/{playlist_id}
 
-        if playlist_id == "":
+        if playlist_id == None:
             # Get the user's playlists
             url = f"https://api.spotify.com/v1/users/{user}/playlists"
         else:
@@ -64,7 +64,7 @@ class Spotify:
         # GET https://api.spotify.com/v1/me/tracks
 
         url = f"https://api.spotify.com/v1/me/tracks"
-        
+
         headers = {
             "Authorization": f"Bearer {self.token}"
         }

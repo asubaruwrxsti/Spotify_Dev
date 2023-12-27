@@ -9,4 +9,4 @@ class Index(MethodView):
             message = "Authorized with Spotify, code: " + current_app.config["SPOTIFY"]["code"]
 
         tracks = current_app.config["SPOTIFY"]["object"].fetchMySavedTracks()
-        return render_template('index.html', message=message, tracks=tracks)
+        return render_template('index.html', message=message, tracks=tracks, playlists=None)
