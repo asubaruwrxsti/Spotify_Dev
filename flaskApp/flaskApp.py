@@ -23,8 +23,8 @@ class FlaskApp:
             "client_id": self.env["CLIENT"],
             "client_secret": self.env["SECRET"],
             "redirect_uri": self.env["REDIRECT_URI"],
-            "scope": self.env["SCOPE"],
             "user_id": self.env["MY_USER_ID"],
+            "scope": self.env["SCOPE"],
             "object": None,
             "code": None
         }
@@ -35,7 +35,7 @@ class FlaskApp:
         self.addRoute("/getSpotifyCode", GetSpotifyCode, "getSpotifyCode")
         
         # Create a Spotify object
-        self.app.config['SPOTIFY']['object'] = spotifyClient.Spotify(self.env["CLIENT"], self.env["SECRET"], self.env["MY_USER_ID"], "http://localhost:8080/callback", "user-read-private user-read-email")
+        self.app.config['SPOTIFY']['object'] = spotifyClient.Spotify(self.env["CLIENT"], self.env["SECRET"], self.env["MY_USER_ID"], self.env["REDIRECT_URI"], self.env["SCOPE"])
 
     def run(self):
         self.app.run(port=self.port)

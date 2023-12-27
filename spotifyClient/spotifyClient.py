@@ -1,6 +1,7 @@
 import requests
+
 class Spotify:
-    def __init__(self, client_id, client_secret, user_id, redirect_uri, scope="user-read-private user-read-email"):
+    def __init__(self, client_id, client_secret, user_id, redirect_uri, scope):
         self.client_id = client_id
         self.client_secret = client_secret
         self.user_id = user_id
@@ -21,24 +22,11 @@ class Spotify:
         data = {
             "grant_type": "client_credentials",
             "client_id": self.client_id,
-            "client_secret": self.client_secret
+            "client_secret": self.client_secret,
+            "scope": self.scope,
         }
         response = requests.post(url, data=data)
         return response.json()["access_token"]
-
-    def getCode(self):
-        # Example from Spotify API:
-        # https://accounts.spotify.com/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https%3A%2F%2Fexample.com%2Fcallback&scope=user-read-private%20user-read-email&state=34fFs29kd09
-
-        url = "https://accounts.spotify.com/authorize"
-        params = {
-            "client_id": self.client_id,
-            "response_type": "code",
-            "redirect_uri": self.redirect_uri,
-            "scope": self.scope
-        }
-        response = requests.get(url, params=params)
-        return response.json()
 
     def fetchPlaylist(self, user, playlist_id):
         # Example from Spotify API:
@@ -71,20 +59,14 @@ class Spotify:
         response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset})
         return response.json()
 
-    def fetchMySavedTracks(self, limit=10, offset=0, code=None):
+    def fetchMySavedTracks(self, limit=10, offset=0):
         # Example from Spotify API:
         # GET https://api.spotify.com/v1/me/tracks
-        if code:
-            self.code = code
-        else:
-            self.code = input("Enter the code: ")
 
         url = f"https://api.spotify.com/v1/me/tracks"
-
-        # Fetch the tracks
+        
         headers = {
             "Authorization": f"Bearer {self.token}"
         }
-
-        response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset, "grant_type": "authorization_code", "code": self.code})
+        response = requests.get(url, headers=headers, params={"limit": limit, "offset": offset})
         return response.json()
