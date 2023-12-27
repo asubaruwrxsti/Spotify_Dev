@@ -5,8 +5,16 @@
         <title>Callback</title>
     </head>
     <body>
-        <h1>Callback Code</h1>
-        <p>Copy the code below and paste it into the application.</p>
-        <p>Code: <strong>{{ code }}</strong></p>
+        <h1>Callback Code was received!</h1>
+        <p>Code: <strong>{{ code }}</strong></p>        
+        <p id="timer">Redirecting in 5 seconds...</p>
+
+        <br>
+        <a href="{{ url_for('index') }}">Back to Home</a>
     </body>
+    <script>
+        let timer = setTimeout(function() {
+            window.location.href = "{{ url_for('index') }}";
+        }, 5000);
+    </script>
 </html>
